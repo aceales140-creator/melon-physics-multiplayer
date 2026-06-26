@@ -1,0 +1,333 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    overflow: hidden;
+}
+
+#gameContainer {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "toolbox canvas chat"
+        "players canvas chat";
+    grid-template-columns: 200px 1fr 250px;
+    grid-template-rows: 60px 1fr auto;
+    height: 100vh;
+    gap: 10px;
+    padding: 10px;
+}
+
+#header {
+    grid-area: header;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#header h1 {
+    font-size: 1.8em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#playerName {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 14px;
+}
+
+#joinGame {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#joinGame:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+#playerCount {
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+#toolbox {
+    grid-area: toolbox;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+#toolbox h3 {
+    margin-bottom: 10px;
+    color: #FFD700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tool-btn {
+    padding: 10px 8px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.tool-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.tool-btn.active {
+    background: #FF6B6B;
+    border-color: #FF5252;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+#clearAll {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #FF4444;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+#clearAll:hover {
+    background: #FF3333;
+    transform: translateY(-2px);
+}
+
+#gameCanvas {
+    grid-area: canvas;
+    background: #87CEEB;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    cursor: crosshair;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+#chat {
+    grid-area: chat;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+#chatMessages {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    max-height: 400px;
+    padding-right: 10px;
+}
+
+.chat-message {
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    font-size: 13px;
+    word-wrap: break-word;
+}
+
+.chat-message.system {
+    background: rgba(255, 193, 7, 0.3);
+    font-style: italic;
+    text-align: center;
+}
+
+.chat-message.player {
+    background: rgba(76, 175, 80, 0.3);
+}
+
+#chatInput {
+    display: flex;
+    gap: 8px;
+}
+
+#messageInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+#sendMessage {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    background: #2196F3;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#sendMessage:hover {
+    background: #1976D2;
+    transform: scale(1.05);
+}
+
+#onlinePlayers {
+    grid-area: players;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#onlinePlayers h3 {
+    margin-bottom: 10px;
+    color: #FFD700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.player-item {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.player-status {
+    width: 8px;
+    height: 8px;
+    background: #4CAF50;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Physics objects styling */
+.physics-object {
+    position: absolute;
+    border-radius: 50%;
+    user-select: none;
+    transition: all 0.1s ease;
+}
+
+.melon {
+    background: radial-gradient(circle, #90EE90, #228B22);
+    border: 2px solid #006400;
+}
+
+.apple {
+    background: radial-gradient(circle, #FF6B6B, #DC143C);
+    border: 2px solid #8B0000;
+}
+
+.bomb {
+    background: radial-gradient(circle, #333, #000);
+    border: 2px solid #444;
+}
+
+.brick {
+    background: linear-gradient(45deg, #D2691E, #A0522D);
+    border: 2px solid #8B4513;
+    border-radius: 4px;
+}
+
+.car {
+    background: linear-gradient(90deg, #4169E1, #0000CD);
+    border: 2px solid #00008B;
+    border-radius: 8px;
+}
+
+.balloon {
+    background: radial-gradient(circle, #FFB6C1, #FF69B4);
+    border: 2px solid #FF1493;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    #gameContainer {
+        grid-template-areas:
+            "header header"
+            "toolbox canvas"
+            "chat chat";
+        grid-template-columns: 200px 1fr;
+        grid-template-rows: 60px 1fr 200px;
+    }
+    
+    #onlinePlayers {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    #gameContainer {
+        grid-template-areas:
+            "header"
+            "toolbox"
+            "canvas"
+            "chat";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 400px 150px;
+    }
+    
+    .tool-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    #gameCanvas {
+        width: 100%;
+        height: 400px;
+    }
+}
