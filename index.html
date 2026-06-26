@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Melon Playground</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="header">
+            <h1>🍉 Multiplayer Melon Playground</h1>
+            <div id="controls">
+                <input type="text" id="playerName" placeholder="Enter your name" maxlength="20">
+                <button id="joinGame">Join Game</button>
+                <span id="playerCount">Players: 1</span>
+            </div>
+        </div>
+        
+        <div id="toolbox">
+            <h3>Objects</h3>
+            <div class="tool-grid">
+                <button class="tool-btn" data-object="melon">🍉 Melon</button>
+                <button class="tool-btn" data-object="apple">🍎 Apple</button>
+                <button class="tool-btn" data-object="bomb">💣 Bomb</button>
+                <button class="tool-btn" data-object="brick">🧱 Brick</button>
+                <button class="tool-btn" data-object="car">🚗 Car</button>
+                <button class="tool-btn" data-object="balloon">🎈 Balloon</button>
+            </div>
+            
+            <h3>Tools</h3>
+            <div class="tool-grid">
+                <button class="tool-btn" data-tool="move">✋ Move</button>
+                <button class="tool-btn" data-tool="delete">🗑️ Delete</button>
+                <button class="tool-btn" data-tool="explode">💥 Explode</button>
+                <button class="tool-btn active" data-tool="spawn">➕ Spawn</button>
+            </div>
+            
+            <button id="clearAll">🧹 Clear All</button>
+        </div>
+        
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <div id="chat">
+            <div id="chatMessages"></div>
+            <div id="chatInput">
+                <input type="text" id="messageInput" placeholder="Type a message..." maxlength="100">
+                <button id="sendMessage">Send</button>
+            </div>
+        </div>
+        
+        <div id="onlinePlayers">
+            <h3>Online Players</h3>
+            <div id="playersList"></div>
+        </div>
+    </div>
+    
+    <script src="physics.js"></script>
+    <script src="multiplayer.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
